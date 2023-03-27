@@ -1,15 +1,22 @@
 import './App.css';
-import Cards from './components/Cards.jsx';
-import Nav from './components/Nav';
-import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import Cards from './components/Cards/Cards.jsx';
+import Nav from './components/Nav/Nav';
+import {useState, useEffect} from 'react';
+import { Routes, Route, useLocation, useNavigate} from 'react-router-dom';
 import About from './components/Views/About';
 import Detail from './components/Views/Detail';
 import Error from './components/Views/Error';
-import Login from './components/Views/Login';
+import Form from './components/Form/Form';
 
 function App() {
+   const location = useLocation();
+   const navigate = useNavigate();
+
    const [characters, setCharacters] = useState([]);
+   const [access, setAccess] = useState(false);
+
+   const EMAIL = "kevin@gmail.com";
+   const PASSWORD = "pepito123";
 
    const onSearch = (id) => {
       const URL_BASE = "https://rickandmortyapi.com/api";
@@ -29,11 +36,29 @@ function App() {
       setCharacters(characters.filter((character) => character.id !== id));
    }
 
+   const login = (userData) => {
+      if (userData.password === PASSWORD && userData.email === EMAIL) {
+         setAccess(true);
+         navigate('/home');
+      }
+   }
+
+   const logout = () => {
+      setAccess(false);
+      navigate('/');
+   }
+
+   useEffect(() => {
+      //Si no tiene acceso , redirigira siempre al usuario al form [ruta default] => if(!access) navigate("/")
+      !access && navigate('/');
+   }, [access]); //Escucha los cambios del estado access
+
    return (
       <div className='App'>
-         <Nav onSearch={onSearch}/>
+         {/* Siempre y cuando no estemos posicionados en la ruta / , el componente Nav se mostrara */}
+         {(location.pathname !== "/") && <Nav onSearch={onSearch} logout={logout}/>}
          <Routes>
-            <Route path="/" element={<Login/>}/>
+            <Route path="/" element={<Form login={login}/>}/>
 
             <Route path="/home" element={<Cards characters={characters} onClose={onClose}/>}/>
 
