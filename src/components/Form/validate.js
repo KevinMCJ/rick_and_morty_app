@@ -4,16 +4,12 @@ const validation = (formData) => {
     //Email
     if(!formData.email){
         errors.email = "Este campo no puede estar vacío";
-    }else{
-        if(formData.email.length > 35){
-            errors.email = "El email superar los 35 caracteres";
-        }
-
+    }else if(formData.email.length > 35){
+        errors.email = "El email superar los 35 caracteres";
         // Aun no es un email valido y el usuario escribe mas de 20 letras , al hacer esto cada vez 
         // La aplicacion crashea... como podria optimizarlo..
-        if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)){
-            errors.email = "El email invalido!";
-        }
+    }else if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{3})+$/.test(formData.email)){
+        errors.email = "El email invalido!";
     }
 
     //Password 

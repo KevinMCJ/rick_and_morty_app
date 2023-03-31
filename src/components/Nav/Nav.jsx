@@ -15,6 +15,9 @@ const Nav = (props) => {
             <Link to="/home">
                 <button>Home</button>
             </Link>
+            <Link to="/favorites">
+                <button>Favorites</button>
+            </Link>
             <button onClick={props.logout}>Log out</button>
         </div>
     );
