@@ -1,0 +1,24 @@
+.nav{
+    display: flex;
+    background-image: linear-gradient(315deg, #0b3b8f 0%, #40077e 74%);
+    padding: 2.3rem 2rem;
+    box-shadow: 0px 10px 40px #5f1313;
+    border-radius: 2px;
+    justify-content: space-around;
+    margin-bottom: 1.5rem;
+}
+
+.nav:hover{
+    scale: 1.01;
+    transition: all 0.1s;
+}
+
+.linkBtn{
+    padding: 0.8rem 5rem;
+    background-color: #18195f;
+    border: none;
+}
+
+button{
+    cursor: pointer;
+}
