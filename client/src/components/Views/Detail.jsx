@@ -29,7 +29,7 @@ const Detail = () => {
           <p>{character.status}</p>
           <p>{character.species}</p>
           <p>{character.gender}</p>
-          <p>{character.origin.name}</p>
+          <p>{character.origin}</p>
           <img src={character.image} alt={`Foto de ${character.name}`} />
         </>
       ) : (
