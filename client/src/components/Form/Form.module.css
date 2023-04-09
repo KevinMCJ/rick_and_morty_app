@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 
 form {
   height: 100vh;
@@ -7,41 +8,48 @@ form {
   background-size: cover;
   display: flex;
   font-family: "Delicious Handrawn", cursive;
-  justify-content: space-between;
   color: #feeffd;
 }
 
 .welcome {
-  width: 60vw;
+  width: 70vw;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .welcome h1 {
   font-size: 4rem;
-  padding: 1rem 2rem;
-  text-align: center;
   background-image: linear-gradient(to left, #fa80fa, #00ffff);
   background-clip: text;
   color: transparent;
+  margin-bottom: 1.2rem;
 }
 
 .welcome p {
-  margin: auto 0;
   text-align: center;
   line-height: 1.8;
   font-size: 1.4rem;
   font-weight: 400;
-  margin: 0 2rem;
-  border-radius: 20px;
   letter-spacing: 1px;
-  padding: 1rem 1rem;
+  padding: 1rem 4rem;
+}
+
+.author {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #747379;
 }
 
 .login {
   background-color: #0d0944ce;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem 0;
   width: 30vw;
   padding: 3rem 3rem;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 2);
@@ -49,17 +57,16 @@ form {
 }
 
 .login h2 {
-  text-align: center;
   font-size: 4.2rem;
   font-weight: 400;
   text-decoration: underline;
-  margin: 0;
+  margin: 0 0;
 }
 
 .login button {
+  margin-top: 1.6rem;
   border: none;
   width: 250px;
-  margin: 1rem auto;
   padding: 1.5rem;
   border-radius: 40px;
   font-weight: 800;
@@ -71,29 +78,32 @@ form {
 }
 
 .login button:hover {
-  scale: 1.1;
-  transform: translate3d(0, 10px, 0);
+  scale: 1.05;
+  transform: translate3d(0, -5px, 0);
   transition: all 1s;
 }
 
 .inputBox {
   display: flex;
   flex-direction: column;
-  margin: 9% auto;
   font-size: 1.4rem;
   width: 60%;
+  position: relative;
 }
 
 .inputBox input {
   margin-top: 10px;
-  border: none;
   padding: 1rem;
+  border: 2px solid #680a7452;
   border-radius: 10px;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 800;
 }
 
-.author {
+.errorText{
+  color: red;
   position: absolute;
-  bottom: 0;
-  right: 0;
-  color: #747379;
+  top: 95px;
 }
+
+/* Aun no hice los mediaqueries, no es responsive */

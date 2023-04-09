@@ -65,7 +65,7 @@ const Form = ({ login }) => {
             value={userData.email}
             onChange={handleChange}
           />
-          {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
+          {errors.email && <span className={style.errorText}>{errors.email}</span>}
         </div>
         <div className={style.inputBox}>
           <label htmlFor="password">Password: </label>
@@ -75,7 +75,7 @@ const Form = ({ login }) => {
             value={userData.password}
             onChange={handleChange}
           />
-          {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
+          {errors.password && <span className={style.errorText}>{errors.password}</span>}
         </div>
         <button type="submit">Submit</button>
       </div>
