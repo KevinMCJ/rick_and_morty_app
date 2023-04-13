@@ -8,6 +8,7 @@ import Detail from "./components/Views/Detail";
 import Error from "./components/Views/Error";
 import Form from "./components/Form/Form";
 import Favorites from "./components/Views/Favorites";
+import axios from "axios";
 
 function App() {
   const location = useLocation();
@@ -16,25 +17,20 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const [access, setAccess] = useState(false);
 
-  const EMAIL = "kevin@gmail.com";
-  const PASSWORD = "pepito123";
-
   const onSearch = (id) => {
     const URL_BASE = "http://localhost:3001/rickandmorty";
     const foundCharacter = characters.find((character) => character.id == id);
 
+    // Si el personaje aún no ha sido agregado, realizamos la peticion y posteriormente lo añadimos a la lista de personajes.
     if (foundCharacter) {
       alert("¡Este personaje ya se encuentra en la lista!");
     } else {
-      // Si el personaje no existe, hacemos la petición y lo agregamos a la lista de personajes
-      fetch(`${URL_BASE}/character/${id}`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.name) {
-            setCharacters([...characters, data]);
-          } else {
-            alert("¡No hay personajes con este ID!");
-          }
+      axios.get(`${URL_BASE}/character/${id}`)
+        .then((response) => {
+          setCharacters([...characters, response.data]);
+        })
+        .catch((error) => {
+          alert("¡No hay personajes con este ID!");
         });
     }
   };
@@ -44,10 +40,14 @@ function App() {
   };
 
   const login = (userData) => {
-    if (userData.password === PASSWORD && userData.email === EMAIL) {
-      setAccess(true);
-      navigate("/home");
-    }
+    const { email, password } = userData;
+    const URL = "http://localhost:3001/rickandmorty/login/";
+
+    axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+      const { access } = data;
+      setAccess(data);
+      access && navigate("/home");
+    });
   };
 
   const logout = () => {
@@ -56,7 +56,7 @@ function App() {
   };
 
   useEffect(() => {
-    //Si no tiene acceso , redirigira siempre al usuario al form [ruta default] => if(!access) navigate("/")
+    // Si un usuario no está autorizado quiere acceder a cualquier ruta, se redigira al login.
     !access && navigate("/");
   }, [access]); //Escucha los cambios del estado access
 

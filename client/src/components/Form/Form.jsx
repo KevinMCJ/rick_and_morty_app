@@ -13,6 +13,9 @@ const Form = ({ login }) => {
     password: "",
   });
 
+  // !Si aun no es un input valido y el usuario escribe mas de 20 letras , al hacer esto cada vez
+  // !La aplicacion pierde mas rendimiento.. investigar debounce y metodos asi para esperar a que
+  // !El usuario deje de escibir y ahi realizar las validaciones.
   const handleChange = (event) => {
     const property = event.target.name;
     const value = event.target.value;
