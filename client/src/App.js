@@ -17,21 +17,16 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const [access, setAccess] = useState(false);
 
-  const onSearch = (id) => {
+  const onSearch = async (id) => {
     const URL_BASE = "http://localhost:3001/rickandmorty";
-    const foundCharacter = characters.find((character) => character.id == id);
+    const foundCharacter = characters.some((character) => character.id === Number(id));
 
     // Si el personaje aún no ha sido agregado, realizamos la peticion y posteriormente lo añadimos a la lista de personajes.
     if (foundCharacter) {
       alert("¡Este personaje ya se encuentra en la lista!");
     } else {
-      axios.get(`${URL_BASE}/character/${id}`)
-        .then((response) => {
-          setCharacters([...characters, response.data]);
-        })
-        .catch((error) => {
-          alert("¡No hay personajes con este ID!");
-        });
+      const response = await axios.get(`${URL_BASE}/character/${id}`);
+      setCharacters([...characters, response.data]);
     }
   };
 
@@ -39,15 +34,14 @@ function App() {
     setCharacters(characters.filter((character) => character.id !== id));
   };
 
-  const login = (userData) => {
+  const login = async (userData) => {
     const { email, password } = userData;
-    const URL = "http://localhost:3001/rickandmorty/login/";
-
-    axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
-      const { access } = data;
-      setAccess(data);
-      access && navigate("/home");
-    });
+    const URL = "http://localhost:3001/rickandmorty/login/"; 
+    const { data } = await axios(URL + `?email=${email}&password=${password}`);
+    
+    const { access } = data;
+    setAccess(access);
+    access && navigate("/home");
   };
 
   const logout = () => {

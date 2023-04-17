@@ -1,14 +1,13 @@
 const users = require("../utils/users");
 
-const verifyAccess = (req, res) => {
-    const { email, password } = req.query;
-    const user = users.find((user) => user.email === email && user.password === password);
+const verifyAccess = (email, password) => {
+    const user = users.some((user) => user.email === email && user.password === password);
 
     if(!user) {
-       return res.status(500).json({access: false});
+       throw new Error("Usuario no registrado");
     }
 
-    res.status(200).json({access: true});
+    return true;
 };
 
 module.exports = verifyAccess;

@@ -30,6 +30,7 @@ const Favorites = () => {
         <option value="filter" disabled>
           Filter By
         </option>
+        <option value="All">All</option>
         <option value="Male">Male</option>
         <option value="Female">Female</option>
         <option value="Genderless">Genderless</option>

@@ -1,41 +1,28 @@
-let myFavorites = [];
+let myFavorites = require("../utils/myFavorites");
 
-const postFav = (req, res) => {
-    const { id , name, status, species, gender, origin, image} = req.body;
+const postFav = (character) => {
+  const { id, name, image } = character;
 
-    if(!id || !name || !image){
-        return res.status(400).json({ message: "required information missing"});
-    }
+  if (!id || !name || !image) {
+    throw new Error("Required information missing");
+  }
 
-    const character = {
-        id,
-        name,
-        status,
-        species,
-        gender,
-        origin,
-        image,
-    }
+  myFavorites.push(character);
 
-    myFavorites.push(character);
-    
-    res.status(200).json(myFavorites);
-}
+  return myFavorites;
+};
 
-const deleteFav = (req, res) => {
-    const { id } = req.params;
+const deleteFav = (id) => {
+  if (!id) {
+    throw new Error("id not found");
+  }
 
-    if(!id){
-        return res.status(404).json({ message: "id not found"});
-    }
+  myFavorites = myFavorites.filter((fav) => fav.id !== id);
 
-    const filteredFavs = myFavorites.filter((fav) => fav.id !== id);
-
-    res.status(200).json(filteredFavs);
+  return myFavorites;
 };
 
 module.exports = {
-    postFav,
-    deleteFav,
-}
-
+  postFav,
+  deleteFav,
+};

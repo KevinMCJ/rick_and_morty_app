@@ -33,9 +33,6 @@ function Card({
         gender,
         origin,
         image,
-        onClose,
-        addFav,
-        removeFav,
       });
     }
   };

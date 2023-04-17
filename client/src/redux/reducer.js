@@ -5,15 +5,22 @@ const initialState = {
   myFavorites: [],
 };
 
+let count = 0;
+
 const rootReducer = (state = initialState, action) => {
+  count++
+  console.log(`${count}- Allcharacter son `, state.allCharacters);
+  console.log(`${count}- Myfavorites son `, state.myFavorites);
+
   switch (action.type) {
     case ADD_FAV: 
       return { ...state, myFavorites: action.payload, allCharacters: action.payload};
     case REMOVE_FAV:
-      return { ...state, myFavorites: action.payload };
+      return { ...state, myFavorites: action.payload, allCharacters: action.payload}; 
     case FILTER:
-      const charsFilteredByGender = state.allCharacters.filter((character) => character.gender === action.payload);
-      return { ...state, myFavorites: charsFilteredByGender };
+      const copyCharacters= state.allCharacters;
+      const filtered = copyCharacters.filter((character) => character.gender === action.payload);
+      return { ...state, myFavorites: action.payload === "All" ? copyCharacters : filtered };
     case ORDER:
       return {
         ...state,
