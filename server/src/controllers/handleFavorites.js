@@ -1,9 +1,9 @@
 let myFavorites = require("../utils/myFavorites");
 
 const postFav = (character) => {
-  const { id, name, image } = character;
+  const { id, name, status } = character;
 
-  if (!id || !name || !image) {
+  if (!id || !name || !status) {
     throw new Error("Required information missing");
   }
 
