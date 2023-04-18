@@ -5,12 +5,7 @@ const initialState = {
   myFavorites: [],
 };
 
-let count = 0;
-
 const rootReducer = (state = initialState, action) => {
-  count++
-  console.log(`${count}- Allcharacter son `, state.allCharacters);
-  console.log(`${count}- Myfavorites son `, state.myFavorites);
 
   switch (action.type) {
     case ADD_FAV: 
