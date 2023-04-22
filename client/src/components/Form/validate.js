@@ -5,7 +5,7 @@ const validation = (formData) => {
   if (!formData.email) {
     errors.email = "Este campo no puede estar vacío";
   } else if (formData.email.length > 35) {
-    errors.email = "El email superar los 35 caracteres";
+    errors.email = "El email supera los 35 caracteres";
   } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{3})+$/.test(formData.email)) {
     errors.email = "El email invalido!";
   }
