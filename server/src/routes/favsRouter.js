@@ -1,27 +1,32 @@
 const { Router } = require("express");
-const { postFav, deleteFav } = require("../controllers/handleFavorites");
+const postFav = require("../controllers/postFav");
+const deleteFav = require("../controllers/deleteFav");
 const favsRouter = Router();
 
-favsRouter.post("/", (req, res) => {
+favsRouter.post("/", async (req, res) => {
   try {
+    const favorite = await postFav(req.body);
     res.status(200).json({
       message: "Character added to favorites",
-      myFavorites: postFav(req.body),
+      favorite,
     });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    error.status
+      ? res.status(error.status).json({ error: error.message })
+      : res.status(500).json({ error: error.message });
   }
 });
 
-favsRouter.delete("/:id", (req, res) => {
+favsRouter.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
+    const deleted = await deleteFav(Number(id));
     res.status(200).json({
       message: "Character removed from favorites",
-      myFavorites: deleteFav(Number(id)),
+      deleted,
     });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 

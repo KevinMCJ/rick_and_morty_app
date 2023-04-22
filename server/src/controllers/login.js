@@ -1,13 +1,19 @@
-const users = require("../utils/users");
+const { User } = require("../DB_connection");
 
-const verifyAccess = (email, password) => {
-    const user = users.some((user) => user.email === email && user.password === password);
+const login = async (email, password) => {
+  if (!email || !password) {
+    throw { status: 400, message: "Faltan datos" };
+  }
 
-    if(!user) {
-       throw new Error("Usuario no registrado");
-    }
+  const user = await User.findOne({ email: email, password: password });
 
-    return true;
+  if (!user) throw { status: 404, message: "Usuario no encontrado" };
+
+  if (user.email === email && password !== user.password) {
+    throw { status: 403, message: "Contraseña incorrecta" };
+  }
+
+  return { access: true };
 };
 
-module.exports = verifyAccess;
+module.exports = login;

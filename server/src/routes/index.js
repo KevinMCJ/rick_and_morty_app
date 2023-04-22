@@ -6,7 +6,7 @@ const router = Router();
 
 // * RUTAS
 router.use("/character", routerCharacter);
-router.use("/login", routerLogin);
+router.use("/login", routerLogin); // ! era /login , borrando para probar.
 router.use("/fav", routerFavs);
 
 module.exports = router;
