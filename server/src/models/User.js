@@ -12,6 +12,7 @@ module.exports = (sequelize) => {
       },
       email: {
         type: DataTypes.STRING,
+        unique: true,
         allowNull: false,
         validate: {
           isEmail: true,
@@ -26,10 +27,9 @@ module.exports = (sequelize) => {
         allowNull: false,
         validate: {
           len: {
-            args: [6, 10],
-            msg: "La contraseña debe tener entre 6 y 10 caracteres",
+            args: [5, 30],
+            msg: "La contraseña debe tener entre 5 y 30 caracteres",
           },
-          is: /\d+/,
         },
       },
     },
