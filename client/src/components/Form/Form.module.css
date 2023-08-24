@@ -1,6 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
-
 form {
   height: 100vh;
   background: url("../../assets/img/rick-and-morty-login-img.jpg");
@@ -63,7 +60,7 @@ form {
   margin: 0 0;
 }
 
-.login button {
+.btnSubmit {
   margin-top: 1.6rem;
   border: none;
   width: 250px;
@@ -75,12 +72,17 @@ form {
   color: #ebf3ff;
   letter-spacing: 3px;
   background-image: linear-gradient(104deg, #0e55a1, #1d185f);
+  transition: all 0.3s ease;
 }
 
-.login button:hover {
+.btnSubmit:not(:disabled):hover {
   scale: 1.05;
   transform: translate3d(0, -5px, 0);
-  transition: all 1s;
+}
+
+.btnSubmit:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
 }
 
 .inputBox {
@@ -96,11 +98,11 @@ form {
   padding: 1rem;
   border: 2px solid #680a7452;
   border-radius: 10px;
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
   font-weight: 800;
 }
 
-.errorText{
+.errorText {
   color: red;
   position: absolute;
   top: 95px;
