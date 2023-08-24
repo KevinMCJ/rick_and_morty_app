@@ -1,6 +1,10 @@
 .App {
    background-image: url("./assets/img/app-background-img.jpg");
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
    background-size: cover;
+   background-attachment: fixed;
    background-position: center;
    background-repeat: no-repeat;
    overflow: hidden;
