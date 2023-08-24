@@ -8,6 +8,9 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
+      },
+      favoriteId: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       name: {
@@ -32,7 +35,6 @@ module.exports = (sequelize) => {
       },
       image: {
         type: DataTypes.STRING,
-        defaultValue: "/server/assets/img/defaultimage.jpeg",
         allowNull: false,
       },
     },

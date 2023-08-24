@@ -1,16 +1,34 @@
-const { Favorite } = require("../DB_connection");
+const { Favorite, User } = require("../DB_connection");
 
-const postFav = async ({ name, origin, status, image, species, gender }) => {
-  if (!name || !origin || !status || !species || !gender) {
+const postFav = async ({
+  favoriteId,
+  name,
+  origin,
+  status,
+  image,
+  species,
+  gender,
+  userId,
+}) => {
+  if ((!favoriteId, !name || !origin || !status || !species || !gender || !userId)) {
     throw { status: 401, message: "Faltan datos" };
   }
 
-  const [favorite, created] = await Favorite.findOrCreate({
-    where: { name },
-    defaults: { origin, status, species, gender, image },
+  const user = await User.findByPk(userId);
+
+  if (!user) throw { status: 404, message: "Usuario no encontrado" };
+
+  const favorite = await Favorite.create({
+    favoriteId,
+    name,
+    origin,
+    status,
+    species,
+    gender,
+    image,
   });
 
-  if (!created) throw Error(`El favorito "${name}" ya ha sido agregado`);
+  await favorite.setUser(user);
 
   return favorite;
 };
