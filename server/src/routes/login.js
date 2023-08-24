@@ -6,11 +6,12 @@ const routerLogin = express.Router();
 routerLogin.get("/", async (req, res) => {
   try {
     const { email, password } = req.query;
-    res.status(200).json({ access: await login(email, password) });
+    const userId = await login(email, password);
+    res.status(200).json({ access: true, userId });
   } catch (error) {
     error.status
-      ? res.status(error.status).json({ error: error.message })
-      : res.status(500).json({ error: "Internal Server Error" });
+      ? res.status(error.status).json({ access: false, error: error.message })
+      : res.status(500).json({ access: false, error: "Internal Server Error" });
   }
 });
 
