@@ -1,7 +1,43 @@
+.section {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.empty {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.75);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnPage {
+  padding: 0.2rem 0.8rem;
+  background: linear-gradient(to right bottom, #f25c05, #f98151);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
 .container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  row-gap: 2rem;
-  column-gap: 1.6rem;
-  margin: 2rem 1.2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.empty_paragraph {
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  background: linear-gradient(45deg, #6dc8d6, #dcf4f8);
+  text-shadow: 0px 0px 2px hsl(0, 0%, 0%, 0.2);
+  -webkit-background-clip: text; /* Para navegadores basados en WebKit */
+  background-clip: text;
+  color: transparent; /* Hace que el texto sea transparente, mostrando el gradiente de fondo */
 }
