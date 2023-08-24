@@ -1,10 +1,22 @@
 const { Router } = require("express");
+const getFavorites = require("../controllers/getFavorites");
 const postFav = require("../controllers/postFav");
 const deleteFav = require("../controllers/deleteFav");
 const favsRouter = Router();
 
+favsRouter.get("/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const allFavorites = await getFavorites(userId);
+    res.status(200).json(allFavorites);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 favsRouter.post("/", async (req, res) => {
   try {
+    console.log(req.body);
     const favorite = await postFav(req.body);
     res.status(200).json({
       message: "Character added to favorites",

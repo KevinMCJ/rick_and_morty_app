@@ -1,14 +1,42 @@
-.container{
-    display: grid;
-    grid-template-columns: 1fr 1fr;    
-    justify-items: center;
-    gap: 0.8rem 1rem;
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: 0.8rem 1rem;
 }
 
-.container input{
-    grid-column: span 2;
+.navBtn {
+  padding: 0.4rem 1rem;
+  background: #193e99;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 100%;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
 }
 
-.container button{
-    border: none;
+.container input {
+  font-family: inherit;
+  background-color: #35597a;
+  color: white;
+  font-weight: 500;
+  grid-column: span 2;
+  padding: 0.5rem 1rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  width: 100%;
+  letter-spacing: .7px;
+}
+
+.container input:focus {
+  border-color: #718ba2;
+  transition: border-color 0.09s linear;
+}
+
+.container input::placeholder {
+  color: #b8c5d1;
+}
+
+.container button {
+  border: none;
 }

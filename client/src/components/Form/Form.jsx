@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import validation from "./validate";
 import style from "./Form.module.css";
 
 const Form = ({ login }) => {
+  const [hasErrors, setHasErrors] = useState(true);
+
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -13,30 +15,31 @@ const Form = ({ login }) => {
     password: "",
   });
 
-  // !Si aun no es un input valido y el usuario escribe mas de 20 letras , al hacer esto cada vez
-  // !La aplicacion pierde mas rendimiento.. investigar debounce y metodos asi para esperar a que
-  // !El usuario deje de escibir y ahi realizar las validaciones.
   const handleChange = (event) => {
-    const property = event.target.name;
-    const value = event.target.value;
+    const { name, value } = event.target;
 
     setUserData({
       ...userData,
-      [property]: value,
+      [name]: value,
     });
 
     setErrors(
       validation({
         ...userData,
-        [property]: value,
+        [name]: value,
       })
     );
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    login(userData);
+    if (!hasErrors) login(userData);
   };
+
+  // * Cuando no exista ninguna propiedad en errors se puede enviar el formulario.
+  useEffect(() => {
+    !Object.keys(errors).length ? setHasErrors(false) : setHasErrors(true);
+  }, [errors]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -68,7 +71,9 @@ const Form = ({ login }) => {
             value={userData.email}
             onChange={handleChange}
           />
-          {errors.email && <span className={style.errorText}>{errors.email}</span>}
+          {errors.email && (
+            <span className={style.errorText}>{errors.email}</span>
+          )}
         </div>
         <div className={style.inputBox}>
           <label htmlFor="password">Password: </label>
@@ -78,9 +83,11 @@ const Form = ({ login }) => {
             value={userData.password}
             onChange={handleChange}
           />
-          {errors.password && <span className={style.errorText}>{errors.password}</span>}
+          {errors.password && (
+            <span className={style.errorText}>{errors.password}</span>
+          )}
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={hasErrors} className={style.btnSubmit}>Submit</button>
       </div>
     </form>
   );

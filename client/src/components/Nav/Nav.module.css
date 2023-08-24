@@ -1,24 +1,39 @@
-.nav{
-    display: flex;
-    background-image: linear-gradient(315deg, #0b3b8f 0%, #40077e 74%);
-    padding: 2.3rem 2rem;
-    box-shadow: 0px 10px 40px #5f1313;
-    border-radius: 2px;
-    justify-content: space-around;
-    margin-bottom: 1.5rem;
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: 6.8rem;
+  background-image: linear-gradient(to right, #183552, #012140);
+  padding: 1.8rem 1.5rem;
+  box-shadow: 0px 2px 2px hsl(220, 96%, 9%);
 }
 
-.nav:hover{
-    scale: 1.01;
-    transition: all 0.1s;
+.link_list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex: 1;
 }
 
-.linkBtn{
-    padding: 0.8rem 5rem;
-    background-color: #18195f;
-    border: none;
+.linkBtn {
+  padding: 0.8rem 5rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  background: linear-gradient(45deg, #f20544, #f42d62);
+  border-radius: 5px;
+  border: none;
 }
 
-button{
-    cursor: pointer;
+.linkBtn:hover {
+  background: linear-gradient(45deg, #e73a6b 2%, #f20544);
+}
+
+.btnLogout {
+  padding: 0.5rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: #b40330;
 }

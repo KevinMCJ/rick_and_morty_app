@@ -13,10 +13,10 @@ export default function SearchBar(props) {
 
   return (
     <div className={style.container}>
-      <input type="search" onChange={handleChange} value={id} />
-      <button onClick={() => props.onSearch(id)}>Agregar</button>
-      <button onClick={() => props.onSearch(idAleatorio)}>
-        Agregar personaje aleatorio
+      <input type="search" onChange={handleChange} value={id} placeholder="Ingrese un numero del 1 al 826" />
+      <button onClick={() => props.onSearch(id)} className={style.navBtn}>Agregar</button>
+      <button onClick={() => props.onSearch(idAleatorio)} className={style.navBtn}>
+        Agregar aleatorio
       </button>
     </div>
   );
