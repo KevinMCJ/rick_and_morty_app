@@ -26,14 +26,14 @@ const Favorites = () => {
     <section className={style.container}>
       <div className={style.filter_sort_container}>
         <select name="orderBy" id="orderBy" onChange={handleOrder}>
-          <option value="order" disabled>
-            Order By
+          <option value="">
+            Order by
           </option>
-          <option value="Ascendente">Ascendente</option>
-          <option value="Descendente">Descendente</option>
+          <option value="Ascendente">Ascendant</option>
+          <option value="Descendente">Decendant</option>
         </select>
         <select name="filterBy" id="filterBy" onChange={handleFilter}>
-          <option value="filter" disabled>
+          <option value="">
             Filter By
           </option>
           <option value="All">All</option>

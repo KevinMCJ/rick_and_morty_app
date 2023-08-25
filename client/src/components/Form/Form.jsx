@@ -46,23 +46,22 @@ const Form = ({ login }) => {
       <div className={style.welcome}>
         <h1>RICK & MORTY APP</h1>
         <p>
-          ¡Bienvenidos a la aventura más loca del universo! ¿Eres fanático de
-          Rick y Morty? ¿Te encanta conocer todos los detalles de tus personajes
-          favoritos? ¡Entonces estas en la aplicación perfecta para ti! Con esta
-          app, podrás acceder a información detallada de los 826 personajes de
-          la serie. Desde los protagonistas más conocidos hasta los personajes
-          más extraños y aleatorios, tendrás acceso a todos ellos en un solo
-          lugar. Además, podrás agregar tus personajes favoritos a una lista
-          especial, para que nunca los pierdas de vista. ¿Te gusta coleccionar
-          cosas? Entonces te encantará nuestra sección de cartas coleccionables,
-          donde podrás encontrar detalles exclusivos de cada personaje.
-          Colecciona todas las cartas y conviértete en el mayor experto de Rick
-          y Morty.
+          Welcome to the craziest adventure in the universe! Are you a Rick and
+          Morty fan? Do you love to know all the details about your favorite
+          characters? Then this is the perfect app for you! With this app, you
+          will be able to access detailed information about the 826 characters
+          of the series. From the best-known protagonists to the strangest and
+          characters, you will have access to all of them in one place. Plus,
+          you can add your favorite characters to a special list, so you'll
+          never miss them. Do you like to collect things? Then you'll love our
+          collectible cards section, where you can find exclusive details of
+          each character. Collect all the cards and become the greatest Rick and
+          Morty expert.
         </p>
         <p className={style.author}>App by: Kevin Mamani</p>
       </div>
       <div className={style.login}>
-        <h2>Ingresa</h2>
+        <h2>Login</h2>
         <div className={style.inputBox}>
           <label htmlFor="email">Email: </label>
           <input
@@ -87,7 +86,9 @@ const Form = ({ login }) => {
             <span className={style.errorText}>{errors.password}</span>
           )}
         </div>
-        <button type="submit" disabled={hasErrors} className={style.btnSubmit}>Submit</button>
+        <button type="submit" disabled={hasErrors} className={style.btnSubmit}>
+          Submit
+        </button>
       </div>
     </form>
   );
