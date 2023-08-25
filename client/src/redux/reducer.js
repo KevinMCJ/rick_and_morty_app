@@ -4,6 +4,7 @@ const initialState = {
   userId: null,
   allCharacters: [],
   myFavorites: [],
+  filteredFavorites: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -11,23 +12,23 @@ const rootReducer = (state = initialState, action) => {
     case SET_USER_ID:
       return {...state, userId: action.payload};
     case GET_FAVS:
-      return {...state, myFavorites: action.payload};
+      return {...state, myFavorites: action.payload, filteredFavorites: action.payload};
     case ADD_FAV: 
-      return { ...state, myFavorites: [...state.myFavorites, action.payload]};
+      return { ...state, myFavorites: [...state.myFavorites, action.payload], filteredFavorites: [...state.myFavorites, action.payload]};
     case REMOVE_FAV:
       const newFavorites = state.myFavorites.filter(fav => fav.id !== action.payload.id);
-      return { ...state, myFavorites: newFavorites};
+      return { ...state, myFavorites: newFavorites, filteredFavorites: newFavorites};
     case FILTER:
       const copyFavorites = [...state.myFavorites];
       const filtered = state.myFavorites.filter((character) => character.gender === action.payload);
-      return { ...state, myFavorites: action.payload === "All" ? copyFavorites : filtered };
+      return { ...state, filteredFavorites: action.payload === "All" ? copyFavorites : filtered };
     case ORDER:
       return {
         ...state,
-        myFavorites:
+        filteredFavorites:
           action.payload === "Ascendente"
-            ? state.myFavorites.sort((a, b) => a.id - b.id)
-            : state.myFavorites.sort((a, b) => b.id - a.id), //Descendente
+            ? state.filteredFavorites.sort((a, b) => a.id - b.id)
+            : state.filteredFavorites.sort((a, b) => b.id - a.id), //Descendente
       };
     default:
       return { ...state };

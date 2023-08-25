@@ -1,8 +1,19 @@
+.container {
+  background-image: url("../../../assets/img/favorites_background.webp");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 .filter_sort_container {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(45deg, #16721c, #109b17, #08310a);
+  background: linear-gradient(45deg, #198151, #167449);
   border-radius: 0.4rem;
   box-shadow: 0px 4px 20px 2px #0e3611;
   gap: 1.5rem;
@@ -12,5 +23,44 @@
 
 .filter_sort_container > select {
   padding: 0.5rem 2rem;
-  background-color: rgb(38, 219, 134);
+  background: linear-gradient(to top, rgb(16, 119, 71), rgb(31, 161, 101));
+  background-color: rgb(16, 119, 71);
+  border: 1px solid #134930;
+  font-size: 1rem;
+  outline: none;
+  color: #ffffff;
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: .4px;
+}
+
+.title {
+  font-size: 3rem;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #82e787;
+  text-shadow: 0px 2px 2px#08310a;
+  flex: 1;
+  position: relative;
+  padding: 1rem;
+  text-align: center;
+  margin: 3rem;
+  z-index: 1;
+}
+
+.title::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(10, 55, 66, 0.815);
+  border-radius: 12px;
+  border: 2px solid rgba(130, 179, 156, 0.452);
+  z-index: -2;
 }
