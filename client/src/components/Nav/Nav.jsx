@@ -5,9 +5,11 @@ import style from "./Nav.module.css";
 
 const Nav = (props) => {
   const { pathname } = useLocation();
+  let onFavorites = pathname === "/favorites";
+
   return (
-    <nav className={style.nav}>
-      <ul className={style.link_list}>
+    <nav className={`${style.nav} ${onFavorites && style.navFav}`}>
+      <ul className={`${style.link_list} ${onFavorites && style.listGrow}`}>
         <li>
           <Link to="/home" className={style.linkBtn}>
             Home
