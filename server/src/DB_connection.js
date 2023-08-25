@@ -6,6 +6,8 @@ const UserModel = require("./models/User");
 const CharacterModel = require("./models/Character");
 const FavoriteModel = require("./models/Favorite");
 
+// ? Here are your environment variables
+// * PostgreSQL configuration
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/rickandmorty`,
   { logging: false, native: false }
