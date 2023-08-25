@@ -3,7 +3,6 @@ import Cards from "./components/Cards/Cards.jsx";
 import Nav from "./components/Nav/Nav";
 import { useState, useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import Detail from "./components/Views/Detail";
 import Error from "./components/Views/Error";
 import Form from "./components/Form/Form";
 import Favorites from "./components/Views/Favorites/Favorites";
@@ -58,20 +57,21 @@ function App() {
       dispatch(setUserId(userId));
       dispatch(getFavs(userId)); // * Carga todos los favoritos que tenia guardado ese usuario.
     } catch (error) {
-      infoModal("INGRESE", "EMAIL: rick@gmail.com<br><br>CONTRASEÑA: rickandmorty");
+      infoModal("ACCOUNTS", "EMAILS<br>1. rick@gmail.com<br>2. morty@gmail.com<br>PASSWORD: rickandmorty");
     }
   };
 
   const logout = () => {
     setAccess(false);
     dispatch(setUserId(null));
+    setCharacters([]);
     navigate("/");
   };
 
   useEffect(() => {
     // Si un usuario no está autorizado quiere acceder a cualquier ruta, se redigira al login.
     !access && navigate("/");
-  }, [access]); // * Escucha los cambios del estado access
+  }, [access, navigate]); // * Escucha los cambios del estado access
 
   return (
     <div className="App">
@@ -84,7 +84,6 @@ function App() {
           element={<Cards characters={characters} onClose={onClose} />}
         />
         <Route path="/favorites" element={<Favorites />} />
-        <Route path="/detail/:id" element={<Detail />} />
         <Route path="*" element={<Error />} />
       </Routes>
       {location.pathname !== "/" && <Footer />}
