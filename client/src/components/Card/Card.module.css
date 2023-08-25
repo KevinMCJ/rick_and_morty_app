@@ -2,6 +2,17 @@
   display: grid;
   grid-template-columns: 25% auto;
   border-radius: 0.5rem;
+  background-color: #243f72;
+  background-image: radial-gradient(circle at center center, #4599f7, #15294e),
+    repeating-radial-gradient(
+      circle at center center,
+      #4599f7,
+      #4599f7,
+      10px,
+      transparent 20px,
+      transparent 10px
+    );
+  background-blend-mode: multiply;
   overflow: hidden;
   padding: 0.8rem;
 }
@@ -13,12 +24,12 @@
 
 .img_container {
   position: relative;
-  background-color: #000128;
 }
 
-.img{
+.img {
   height: 100%;
   width: 100%;
+  border-radius: calc(0.8rem - 0.5rem);
   object-fit: cover;
   object-position: center center;
 }
@@ -35,7 +46,6 @@
   display: grid;
   padding: 1rem;
   gap: 0.5rem;
-  background-color: #010340;
 }
 
 .info {

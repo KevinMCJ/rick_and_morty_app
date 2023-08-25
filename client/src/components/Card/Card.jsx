@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { addFav, removeFav } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
@@ -40,7 +39,7 @@ function Card({ id, name, status, species, gender, origin, image, onClose }) {
   };
 
   useEffect(() => {
-    setIsFav(myFavorites.some((fav) => fav.id === id))
+    setIsFav(myFavorites.some((fav) => fav.id === id));
   }, [myFavorites, id]);
 
   return (
@@ -58,9 +57,7 @@ function Card({ id, name, status, species, gender, origin, image, onClose }) {
         )}
       </div>
       <div className={style.character_data}>
-        <Link to={`/detail/${id}`}>
-          <h2 className={style.title}>{name}</h2>
-        </Link>
+        <h2 className={style.title}>{name}</h2>
         <div className={style.info}>
           <div className={style.info_box}>
             <h3>Status</h3>
