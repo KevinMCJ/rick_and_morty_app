@@ -1,7 +1,7 @@
 const { Favorite, User } = require("../DB_connection");
 
 const postFav = async ({
-  favoriteId,
+  id,
   name,
   origin,
   status,
@@ -10,7 +10,9 @@ const postFav = async ({
   gender,
   userId,
 }) => {
-  if ((!favoriteId, !name || !origin || !status || !species || !gender || !userId)) {
+  if (
+    (!id || !name || !origin || !status || !species || !gender || !userId)
+  ) {
     throw { status: 401, message: "Faltan datos" };
   }
 
@@ -18,8 +20,15 @@ const postFav = async ({
 
   if (!user) throw { status: 404, message: "Usuario no encontrado" };
 
+  const thereIsFavorite = await Favorite.findOne({
+    where: { id },
+  });
+
+  if (thereIsFavorite)
+    throw { status: 400, message: "Ya existe el favorito en la lista" };
+
   const favorite = await Favorite.create({
-    favoriteId,
+    id,
     name,
     origin,
     status,
