@@ -107,7 +107,7 @@ form {
 .errorText {
   color: red;
   position: absolute;
-  top: 95px;
+  top: 5.93rem;
 }
 
 /* Aun no hice los mediaqueries, no es responsive */
