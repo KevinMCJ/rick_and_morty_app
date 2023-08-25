@@ -1,5 +1,4 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import Card from "../Card/Card";
 import style from "./Cards.module.css";
 import { useState } from "react";
@@ -8,21 +7,8 @@ const CARDS_PER_PAGE = 6;
 
 export default function Cards({ characters, onClose }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const { pathname } = useLocation();
 
   const totalPages = Math.ceil(characters.length / CARDS_PER_PAGE);
-
-  const noCardsMessage = () => {
-    if (pathname === "/home") {
-      return (
-        <p className={style.empty_paragraph}>
-          No hay tarjetas en este universo...
-        </p>
-      );
-    } else if (pathname === "/favorites") {
-      return <p className={style.empty_paragraph}>No hay favoritos</p>;
-    }
-  };
 
   const getCardsForCurrentPage = (allCards) => {
     const startIndex = (currentPage - 1) * CARDS_PER_PAGE;
@@ -39,7 +25,7 @@ export default function Cards({ characters, onClose }) {
       className={`${style.section} ${!characters.length ? style.empty : ""}`}
     >
       {characters.length ? (
-        <React.Fragment>
+        <div>
           <div className={style.pagination}>
             {[...Array(totalPages).keys()].map((pageNumber) => (
               <button
@@ -66,9 +52,11 @@ export default function Cards({ characters, onClose }) {
               />
             ))}
           </div>
-        </React.Fragment>
+        </div>
       ) : (
-        <>{noCardsMessage()}</>
+        <p className={style.empty_paragraph}>
+          No hay personajes en este universo...
+        </p>
       )}
     </section>
   );

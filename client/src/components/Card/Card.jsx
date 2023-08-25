@@ -41,7 +41,7 @@ function Card({ id, name, status, species, gender, origin, image, onClose }) {
 
   useEffect(() => {
     setIsFav(myFavorites.some((fav) => fav.id === id))
-  }, [myFavorites]);
+  }, [myFavorites, id]);
 
   return (
     <div className={style.card}>
