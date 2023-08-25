@@ -3,7 +3,7 @@ import { addFav, removeFav } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import style from "./Card.module.css";
-import { successToast } from "../../utils/swal";
+import { infoToast, successToast } from "../../utils/swal";
 
 function Card({ id, name, status, species, gender, origin, image, onClose }) {
   const [isFav, setIsFav] = useState(false);
@@ -17,27 +17,31 @@ function Card({ id, name, status, species, gender, origin, image, onClose }) {
       dispatch(removeFav(id));
     } else {
       setIsFav(true);
-      dispatch(
-        addFav({
-          favoriteId: id,
-          name,
-          status,
-          species,
-          gender,
-          origin,
-          image,
-          userId,
-        })
-      );
-      successToast("Añadido a favoritos");
+      try {
+        dispatch(
+          addFav({
+            id,
+            name,
+            status,
+            species,
+            gender,
+            origin,
+            image,
+            userId,
+          })
+        );
+        successToast("Añadido a favoritos");
+      } catch (error) {
+        if (error.message === "Ya existe el favorito en la lista") {
+          infoToast("Ya agrego este personaje a favoritos");
+        }
+      }
     }
   };
 
   useEffect(() => {
-    myFavorites.forEach((fav) => {
-      if (fav.id === id) setIsFav(true);
-    });
-  }, [myFavorites, id]);
+    setIsFav(myFavorites.some((fav) => fav.id === id))
+  }, [myFavorites]);
 
   return (
     <div className={style.card}>
