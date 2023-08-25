@@ -1,11 +1,11 @@
 const server = require("./app");
 const PORT = 3001;
 const { conn } = require('./DB_connection');
-const { createSuperUser } = require("./helpers");
+const { createSuperUsers } = require("./helpers");
 
 // * Server
 server.listen(PORT, async () => {
   await conn.sync({force: false});
-  await createSuperUser();
+  await createSuperUsers();
   console.log("Server raised in port: " + PORT);
 });

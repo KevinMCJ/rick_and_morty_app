@@ -1,17 +1,20 @@
 const { User } = require("../DB_connection");
 
-const createSuperUser = async () => {
-  const superUserEmail = process.env.USER_MAIL;
-  const superUserPass = process.env.USER_PASS;
+const createSuperUsers = async () => {
+  const superUsersData = [
+    { email: "rick@gmail.com", password: "rickandmorty" },
+    { email: "morty@gmail.com", password: "rickandmorty" },
+  ];
 
-  const superUser = await User.findOne({ where: { email: superUserEmail } });
-
-  if (!superUser) {
-    await User.create({
-      email: superUserEmail,
-      password: superUserPass,
+  for (const userData of superUsersData) {
+    const existingUser = await User.findOne({
+      where: { email: userData.email },
     });
+
+    if (!existingUser) {
+      await User.create(userData);
+    }
   }
 };
 
-module.exports = { createSuperUser };
+module.exports = { createSuperUsers };
