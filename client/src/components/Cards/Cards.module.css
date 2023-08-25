@@ -1,8 +1,12 @@
 .section {
   flex: 1;
-  display: grid;
-  place-items: center;
-  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paddingContainer{
+  padding: 2.5rem;
 }
 
 .empty {
@@ -13,15 +17,21 @@
 
 .pagination {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .btnPage {
   padding: 0.2rem 0.8rem;
-  background: linear-gradient(to right bottom, #f25c05, #f98151);
-  font-size: 0.8rem;
+  background: linear-gradient(to right bottom, #600694, #a228bb);
+  font-size: 1rem;
   font-weight: 800;
+}
+
+.activeBtn {
+  background-color: black;
 }
 
 .container {
